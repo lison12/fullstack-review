@@ -1,4 +1,5 @@
 import React from 'react';
+// import $ from 'jquery';
 
 class Search extends React.Component {
   constructor(props) {
@@ -6,12 +7,15 @@ class Search extends React.Component {
     this.state = {
       term: ''
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.search = this.search.bind(this)
   }
 
-  onChange (e) {
+  handleChange (e) {
     this.setState({
       term: e.target.value
     });
+    // console.log(this.state.term)
   }
 
   search() {
@@ -21,7 +25,7 @@ class Search extends React.Component {
   render() {
     return (<div>
       <h4>Add more repos!</h4>
-      Enter a github username: <input value={this.state.terms} onChange={this.onChange}/>       
+      Enter a github username: <input value={this.state.term} onChange={this.handleChange}/>       
       <button onClick={this.search}> Add Repos </button>
     </div>) 
   }
