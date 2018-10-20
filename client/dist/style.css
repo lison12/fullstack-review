@@ -1,0 +1,29 @@
+.title {
+	background-color: black; 
+	color: white;
+	margin: 0;
+	padding: 20px;
+}
+
+.search, .repolist {
+	padding: 5px 20px;
+}
+
+.table {
+	margin: 5px 10px;
+}
+
+.labels {
+	font-weight: bold;
+	background-color: lightgrey;
+	padding: 10px;
+	margin: 10px;
+}
+
+.label {
+	margin: 40px;
+	/*display: flex;*/
+	/*flex-wrap: space;*/
+	/*align-items: space-between;*/
+
+}

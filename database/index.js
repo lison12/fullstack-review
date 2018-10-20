@@ -3,7 +3,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
-  id: {type: Number},
+  id: {type: Number, unique: true},
   owner_login: String,
   name: String,
   html_url: String,
@@ -25,6 +25,19 @@ let save = ({id, owner_login, name, html_url, description, forks}) => {
 	  description: description,
 	  forks: forks
   })
+
+  repo.save((err, repo) => {
+  	if (err) {
+  		console.log(err)
+  	}
+  });
+}
+
+//Josh refactor
+let newsave = (r) => {
+
+  var repo = new Repo(r)
+  
   repo.save((err, repo) => {
   	if (err) {
   		console.log(err)
@@ -42,12 +55,22 @@ let findTop = (callback) => {
 	// 	}
 	// }).sort({forks: "desc"}).limit(25)
 
-	Repo.
-		find().
-		limit(25).
-		sort('-forks').
-		exec(callback);
+	Repo.find({}, null, {
+		sort: {forks: +1},
+		limit: 25
+	}, callback)
 
+	// Repo.
+	// 	find().
+	// 	sort('+forks').
+	// 	limit(25).
+	// 	exec(callback);
+}
+
+
+let reset = (callback) => {
+
+	Repo.deleteMany({}, callback)
 }
 
 
@@ -55,4 +78,7 @@ let findTop = (callback) => {
 module.exports.save = save;
 
 module.exports.findTop = findTop;
+
+module.exports.reset = reset;
+
 

@@ -32,7 +32,7 @@ class App extends React.Component {
             this.setState({
               repos: data
             })
-            console.log(this.state.repos)
+            console.log('hi', this.state.repos)
           },
           error: (error) => {console.log('error', error)}
         });  
@@ -44,9 +44,9 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+      <h1  className="title">Github Fetcher</h1>
       <Search onSearch={this.search.bind(this)}/>
+      <RepoList repos={this.state.repos}/>
     </div>)
   }
 }

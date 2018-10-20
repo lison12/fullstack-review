@@ -16,7 +16,7 @@ app.post('/repos', function (req, res) {
 		if (err) {
 			console.log(err);
 		} else {
-			var repoArray = results.map(repo => {
+			var repoArray = results.forEach(repo => {
 				 var r = {
 					"id": repo.id,
 					"owner_login": repo.owner.login,
@@ -51,6 +51,15 @@ app.get('/repos', function (req, res) {
   	}
   })
 });
+
+app.get('/reset', function (req, res) {
+  // TODO - your code here!
+  // This route should send back the top 25 repos
+  db.reset(() => {
+  	res.end('Reset!');
+  })
+});
+
 
 let port = 1128;
 
